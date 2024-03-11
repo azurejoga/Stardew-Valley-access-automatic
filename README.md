@@ -7,6 +7,9 @@ This script is a mod installation automation tool to add accessibility to the St
 3. Download, extract, and move all the necessary mods to the Stardew Valley mods folder you chose.
 4. Run the game after installing.
 
+## Important...
+After you install the game on Steam, run it at least once so that all changes take effect later after running the script. You need to run the game at least once, otherwise it won't work.
+
 ### Main Features
 
 - **Automated Accessibility Mod Installation**: The script automatically downloads and installs mods needed to improve accessibility in Stardew Valley, such as Project Fluent and Stardew Access, which offer specific features for the visually impaired, such as reader compatibility NVDA screen, sound radar and much more!.
