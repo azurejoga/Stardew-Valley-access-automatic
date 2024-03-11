@@ -28,7 +28,7 @@ There are two ways to use the script
    - Navigate to the directory where the `stardew.ps1` file was downloaded.
    - Run the script by clicking on the `stardew.ps1` file with the applications key on your keyboard and running with PowerShell or through PowerShell with the command `.\stardew.ps1`.
 
-two.**Running the Script without needing to download
+2.**Running the Script without needing to download
    - Open PowerShell.
    - Run the following command:
      ```powershell
@@ -37,7 +37,6 @@ two.**Running the Script without needing to download
    This will automatically download and run the script without having to download it from github itself.
 
 #### Observation:
-- Make sure you have PowerShell configured to allow scripts to run. The command provided in the run with PowerShell section temporarily ensures this configuration for script execution only.
 - Make sure you have an internet connection while running the script as it downloads mods directly from online repositories.
 
 ### Contributions
