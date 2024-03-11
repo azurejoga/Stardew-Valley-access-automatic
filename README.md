@@ -28,7 +28,7 @@ There are two ways to use the script
    - Navigate to the directory where the `stardew.ps1` file was downloaded.
    - Run the script by clicking on the `stardew.ps1` file with the applications key on your keyboard and running with PowerShell or through PowerShell with the command `.\stardew.ps1`.
 
-2.**Running the Script without needing to download
+2.**Running the Script without needing to download**
    - Open PowerShell.
    - Run the following command:
      ```powershell
