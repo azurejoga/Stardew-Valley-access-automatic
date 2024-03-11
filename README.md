@@ -21,7 +21,7 @@ This script is a mod installation automation tool to add accessibility to the St
 There are two ways to use the script
 * You can download the source code from github below or use a command that will do the entire process for you, more details below.
 
-#### Manual Execution
+#### Execution
 
 1. **Downloading the Source Code from GitHub**:
    - Download the source code from this repository [here](https://codeload.github.com/azurejoga/Stardew-Valley-access-automatic/zip/refs/heads/main).
