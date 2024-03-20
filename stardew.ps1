@@ -1,5 +1,5 @@
 # URL of SMAPI
-$smaPiUrl = "https://github.com/Pathoschild/SMAPI/releases/download/3.18.6/SMAPI-3.18.6-installer.zip"
+$smaPiUrl = "https://mediafilez.forgecdn.net/files/5194/243/SMAPI%204.0.0-alpha.20240310%20for%20developers-4-0-0-alpha-20240310.zip"
 # Download directory
 $downloadsPath = [System.IO.Path]::Combine($env:USERPROFILE, "Downloads")
 # SMAPI installer path
@@ -8,8 +8,8 @@ $smaPiInstallerPath = Join-Path $downloadsPath "SMAPI.zip"
 $defaultModsPath = "C:\Program Files (x86)\Steam\steamapps\common\Stardew Valley\Mods"
 
 # URLs for  download of Project Fluent and Stardew Access
-$projectFluentUrl = "https://github.com/Shockah/Stardew-Valley-Mods/releases/download/release%2Fproject-fluent%2F1.1.0/ProjectFluent.1.1.0.zip"
-$stardewAccessUrl = "https://github.com/khanshoaib3/stardew-access/releases/download/v1.5.1/stardew-access-1.5.1.zip"
+$projectFluentUrl = "https://github.com/Shockah/Stardew-Valley-Mods/releases/download/release%2Fproject-fluent%2F2.0.0/ProjectFluent.2.0.0.zip"
+$stardewAccessUrl = "https://github.com/khanshoaib3/stardew-access/releases/download/v1.6.0-beta.1/stardew-access.1.6.0-beta.1.zip"
 
 # Function to download and extract zip files
 function DownloadAndExtractZip {
