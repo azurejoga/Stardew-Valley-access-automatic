@@ -48,7 +48,7 @@ if (-not (Test-Path $smaPiInstallerPath)) {
 $installSMAPI = Read-Host "Do you want to install SMAPI? (Enter 'Y' for yes, 'N' for no)"
 if ($installSMAPI -eq "Y") {
     # Extract the SMAPI installer
-    $smaPiExtractedPath = Join-Path $downloadsPath "SMAPI 3.18.6 installer"
+    $smaPiExtractedPath = Join-Path $downloadsPath "SMAPI 4.0.0-alpha.20240310 installer for developers"
     if (-not (Test-Path $smaPiExtractedPath)) {
         try {
             Expand-Archive -Path $smaPiInstallerPath -DestinationPath $downloadsPath -Force
