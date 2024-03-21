@@ -6,6 +6,7 @@ This script is a mod installation automation tool to add accessibility to the St
 2. Configure the mods folder. Asks the user what the mod folder is for installing [stardew-access](https://github.com/khanshoaib3/stardew-access) and [project fluent](https://github.com/projectfluent) Alternatively : if the folder does not open, use alt + tabe to find the window and set the folder.
 3. Download, extract, and move all the necessary mods to the Stardew Valley mods folder you chose.
 4. Run the game after installing.
+5. Create desktop shortcut and enable achievements
 
 ## Important...
 After you install the game on Steam, run it at least once so that all changes take effect later after running the script. You need to run the game at least once, otherwise it won't work.
@@ -26,6 +27,16 @@ There are two ways to use the script
 
 #### Execution
 
+# important 2.
+If you download the script from the repository, you cannot run the script by clicking: run with powershell in file explorer as the script policy is not enabled to support script execution.
+To enable script execution, do the following.
+1. open powershell and type the following command to enable the policy
+```
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted -Force;
+```
+if the terminal output is blank/empty, it is working
+
+# instalation metodes
 1. **Downloading the Source Code from GitHub**:
    - Download the source code from this repository [here](https://codeload.github.com/azurejoga/Stardew-Valley-access-automatic/zip/refs/heads/main).
    - Navigate to the directory where the `stardew.ps1` file was downloaded.
@@ -34,6 +45,7 @@ There are two ways to use the script
 2.**Running the Script without needing to download**
    - Open PowerShell.
    - Run the following command:
+
      ```powershell
      Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted -Force; Invoke-Expression (Invoke-WebRequest -Uri "https://github.com/azurejoga/Stardew-Valley-access-automatic/raw/main/stardew.ps1" -UseBasicParsing).Content
      ```
