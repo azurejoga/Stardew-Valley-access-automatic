@@ -1,3 +1,14 @@
+# executing powershell script policy
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted -Force
+
+# Check if running with administrative privileges
+if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
+    Write-Host "You are not running this script as administrator. Re-launching with elevated permissions..." -ForegroundColor Yellow
+    Start-Sleep -Seconds 3
+    Start-Process powershell.exe -Verb RunAs -ArgumentList "-File",$MyInvocation.MyCommand.Path
+    Exit
+}
+
 # Download directory
 $downloadsPath = [System.IO.Path]::Combine($env:USERPROFILE, "Downloads")
 # SMAPI installer path
@@ -6,9 +17,9 @@ $smaPiInstallerPath = Join-Path $downloadsPath "SMAPI.zip"
 $defaultModsPath = "C:\Program Files (x86)\Steam\steamapps\common\Stardew Valley\Mods"
 
 # URLs for download of SMAPI, Project Fluent, Stardew Access, GlueFurnitureDown, AutoFish, and Kokoro
-$smaPiUrl = "https://mediafilez.forgecdn.net/files/5196/995/SMAPI%204.0.1%204.0.1.zip"
+$smaPiUrl = "https://mediafilez.forgecdn.net/files/5209/431/SMAPI%204.0.2%204.0.2.zip"
 $projectFluentUrl = "https://github.com/Shockah/Stardew-Valley-Mods/releases/download/release%2Fproject-fluent%2F2.0.0/ProjectFluent.2.0.0.zip"
-$stardewAccessUrl = "https://github.com/khanshoaib3/stardew-access/releases/download/v1.6.0-beta.1/stardew-access.1.6.0-beta.1.zip"
+$stardewAccessUrl = "https://github.com/khanshoaib3/stardew-access/releases/download/v1.6.0-beta.2/stardew-access-1.6.0-beta.2.zip"
 $glueFurnitureDownUrl = "https://github.com/elizabethcd/PreventFurniturePickup/releases/download/v1.1.0/GlueFurnitureDown.1.1.0.zip"
 $autoFishUrl = "https://www.dropbox.com/scl/fi/utlvojra41d4e6b1m4w7j/AutoFish-1895-1-5-1-1680785870.zip?rlkey=ybzmtx4umepzquby26fr8uofh&dl=1"
 $kokoroUrl = "https://github.com/Shockah/Stardew-Valley-Mods/releases/download/release%2Fkokoro%2F3.0.0/Kokoro.3.0.0.zip"
@@ -62,12 +73,12 @@ function EnableAchievements {
         $shortcut.Save()
         Write-Host "Conquistas habilitadas para API Stardew Modding."
     } else {
-        Write-Host "Atalho não encontrado na área de trabalho."
+        Write-Host "Atalho nao encontrado na area de trabalho."
     }
 }
 
 # Ask the user if they want to install SMAPI
-$installSMAPI = Read-Host "Deseja instalar o SMAPI? (Digite 'S' para sim, 'N' para não)"
+$installSMAPI = Read-Host "Deseja instalar o SMAPI? (Digite 'Y' para sim, 'N' para não)"
 if ($installSMAPI -eq "Y") {
     # Check if the SMAPI file already exists before downloading it
     if (-not (Test-Path $smaPiInstallerPath)) {
@@ -84,8 +95,25 @@ if ($installSMAPI -eq "Y") {
     }
 }
 
+# Moves to the extracted SMAPI directory and runs the .bat file from the SMAPI directory
+$smaPiDirectory = Get-ChildItem -Path $downloadsPath -Filter "SMAPI*" -Directory | Select-Object -First 1
+if ($smaPiDirectory) {
+    $smaPiDirectory = $smaPiDirectory.FullName
+    Set-Location -Path $smaPiDirectory
+    # Execute the .bat file from the SMAPI directory
+    $batFilePath = Join-Path $smaPiDirectory "install on Windows.bat"
+    if (Test-Path $batFilePath) {
+        & $batFilePath
+        Write-Host "$batFilePath executado a partir do diretório SMAPI."
+    } else {
+        Write-Host "Arquivo .bat não encontrado no diretório SMAPI."
+    }
+} else {
+    Write-Host "Diretório SMAPI não encontrado nos arquivos extraídos."
+}
+
 # Ask the user if they want to choose the installation directory for the mods
-$customModsPathChoice = Read-Host "Quer escolher o diretório de instalação dos mods? (Digite 'S' para sim, 'N' para não)"
+$customModsPathChoice = Read-Host "Quer escolher o diretório de instalação dos mods? (Digite 'Y' para sim, 'N' para não)"
 if ($customModsPathChoice -eq "Y") {
     # Use the native Windows explorer to choose the directory
     $modsPath = (New-Object -ComObject Shell.Application).BrowseForFolder(0, "Escolha o diretório de instalação dos mods", 0, $defaultModsPath).Self.Path
@@ -100,31 +128,31 @@ if (Test-Path $modsPath) {
 }
 
 # Ask the user if they want to download and install Project Fluent
-$downloadProjectFluent = Read-Host "Deseja baixar e instalar o Project Fluent? (Digite 'S' para sim, 'N' para não)"
+$downloadProjectFluent = Read-Host "Deseja baixar e instalar o Project Fluent? (Digite 'Y' para sim, 'N' para não)"
 if ($downloadProjectFluent -eq "Y") {
     DownloadAndExtractZip -sourceUrl $projectFluentUrl -destinationPath $modsPath -fileName "ProjectFluent.zip"
 }
 
 # Ask the user if they want to download and install Stardew Access
-$downloadStardewAccess = Read-Host "Quer baixar e instalar o Stardew Access? (Digite 'S' para sim, 'N' para não)"
+$downloadStardewAccess = Read-Host "Quer baixar e instalar o Stardew Access? (Digite 'Y' para sim, 'N' para não)"
 if ($downloadStardewAccess -eq "Y") {
     DownloadAndExtractZip -sourceUrl $stardewAccessUrl -destinationPath $modsPath -fileName "StardewAccess.zip"
 }
 
 # Ask the user if they want to download and install GlueFurnitureDown
-$downloadGlueFurnitureDown = Read-Host "Quer baixar e instalar o GlueFurnitureDown? (Digite 'S' para sim, 'N' para não)"
+$downloadGlueFurnitureDown = Read-Host "Quer baixar e instalar o GlueFurnitureDown? (Digite 'Y' para sim, 'N' para não)"
 if ($downloadGlueFurnitureDown -eq "Y") {
     DownloadAndExtractZip -sourceUrl $glueFurnitureDownUrl -destinationPath $modsPath -fileName "GlueFurnitureDown.zip"
 }
 
 # Ask the user if they want to download and install AutoFish
-$downloadAutoFish = Read-Host "Quer baixar e instalar o AutoFish? (Digite 'S' para sim, 'N' para não)"
+$downloadAutoFish = Read-Host "Quer baixar e instalar o AutoFish? (Digite 'Y' para sim, 'N' para não)"
 if ($downloadAutoFish -eq "Y") {
     DownloadAndExtractZip -sourceUrl $autoFishUrl -destinationPath $modsPath -fileName "AutoFish.zip"
 }
 
 # Ask the user if they want to download and install Kokoro
-$downloadKokoro = Read-Host "Quer baixar e instalar o Kokoro? (Digite 'S' para sim, 'N' para não)"
+$downloadKokoro = Read-Host "Quer baixar e instalar o Kokoro? (Digite 'Y' para sim, 'N' para não)"
 if ($downloadKokoro -eq "Y") {
     DownloadAndExtractZip -sourceUrl $kokoroUrl -destinationPath $modsPath -fileName "Kokoro.zip"
 }
@@ -146,21 +174,21 @@ function ExecuteGameWithMods {
 $stardewModdingAPIPath = Get-ChildItem -Path (Join-Path (Split-Path $modsPath -Parent) "StardewModdingAPI.exe") -Recurse | Where-Object { $_.Name -eq "StardewModdingAPI.exe" } | Select-Object -ExpandProperty FullName
 
 # Ask the user if they want to create a shortcut on the desktop
-$createShortcut = Read-Host "Quer criar um atalho na área de trabalho? (Digite 'S' para sim, 'N' para não)"
+$createShortcut = Read-Host "Quer criar um atalho na área de trabalho? (Digite 'Y' para sim, 'N' para não)"
 if ($createShortcut -eq "Y") {
     # Create a shortcut on the desktop for Stardew Modding API
     CreateDesktopShortcut -executablePath $stardewModdingAPIPath -shortcutName "StardewModdingAPI"
 }
 
 # Ask the user if they want to enable achievements
-$enableAchievements = Read-Host "Você deseja habilitar conquistas para a API Stardew Modding? (Digite 'S' para sim, 'N' para não)"
+$enableAchievements = Read-Host "Você deseja habilitar conquistas para a API Stardew Modding? (Digite 'Y' para sim, 'N' para não)"
 if ($enableAchievements -eq "Y") {
     # Enable achievements for Stardew Modding API shortcut
     EnableAchievements -shortcutName "StardewModdingAPI"
 }
 
 # Ask the user if they want to execute the game with mods
-$executeGame = Read-Host "Quer executar o jogo com mods agora? (Digite 'S' para sim, 'N' para não)"
+$executeGame = Read-Host "Quer executar o jogo com mods agora? (Digite 'Y' para sim, 'N' para não)"
 if ($executeGame -eq "Y") {
     # Execute the game with mods
     ExecuteGameWithMods -gameExecutablePath $stardewModdingAPIPath

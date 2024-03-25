@@ -33,13 +33,13 @@ function DownloadAndExtractZip {
     )
     try {
         $zipFilePath = Join-Path $downloadsPath $fileName
-        Write-Host "Downloading $fileName... wait..."
+        Write-Host "Téléchargement de  $fileName... veuillez patienter..."
         Invoke-WebRequest -Uri $sourceUrl -OutFile $zipFilePath -UseBasicParsing
         Start-Sleep -Seconds 8
         Expand-Archive -Path $zipFilePath -DestinationPath $destinationPath -Force
-        Write-Host "Downloaded and extracted: $fileName"
+        Write-Host "Fichier télécharger et extrait: $fileName"
     } catch {
-        Write-Host "Failed to download and extract: $fileName"
+        Write-Host "Échec du téléchargement et de l'extraction: $fileName"
     }
 }
 
@@ -55,7 +55,7 @@ function CreateDesktopShortcut {
     $shortcut = $WScriptShell.CreateShortcut($shortcutFilePath)
     $shortcut.TargetPath = $executablePath
     $shortcut.Save()
-    Write-Host "Shortcut created on Desktop."
+    Write-Host "Le raccourci à été créer et placé sur le bureau."
 }
 
 # Function to enable achievements
@@ -71,30 +71,29 @@ function EnableAchievements {
         $shortcut = (New-Object -ComObject WScript.Shell).CreateShortcut($shortcutFilePath)
         $shortcut.Arguments = "%command%"
         $shortcut.Save()
-        Write-Host "Achievements enabled for Stardew Modding API."
+        Write-Host "Les succès ont été activé pour  Stardew Modding API."
     } else {
-        Write-Host "Shortcut not found on Desktop."
+        Write-Host "Le raccourci n'a pas été trouvé sur le bureau."
     }
 }
 
 # Ask the user if they want to install SMAPI
-$installSMAPI = Read-Host "Do you want to install SMAPI? (Enter 'Y' for yes, 'N' for no)"
+$installSMAPI = Read-Host "Voulez vous installer  SMAPI? (Entrez 'Y' pour oui, 'N' pour non)"
 if ($installSMAPI -eq "Y") {
     # Check if the SMAPI file already exists before downloading it
     if (-not (Test-Path $smaPiInstallerPath)) {
         try {
             # Download SMAPI
             DownloadAndExtractZip -sourceUrl $smaPiUrl -destinationPath $downloadsPath -fileName "SMAPI.zip"
-            Write-Host "SMAPI downloaded successfully."
+            Write-Host "SMAPI téléchargé avec succès."
         } catch {
-            Write-Host "Failed to download SMAPI."
+            Write-Host "Échec du téléchargement de  SMAPI."
             exit
         }
     } else {
-        Write-Host "SMAPI installer already exists."
+        Write-Host "SMAPI installer existe déjà."
     }
 }
-
 # Moves to the extracted SMAPI directory and runs the .bat file from the SMAPI directory
 $smaPiDirectory = Get-ChildItem -Path $downloadsPath -Filter "SMAPI*" -Directory | Select-Object -First 1
 if ($smaPiDirectory) {
@@ -104,16 +103,16 @@ if ($smaPiDirectory) {
     $batFilePath = Join-Path $smaPiDirectory "install on Windows.bat"
     if (Test-Path $batFilePath) {
         & $batFilePath
-        Write-Host "$batFilePath executed from the SMAPI directory."
+        Write-Host "$batFilePath run from the SMAPI directory."
     } else {
-        Write-Host ".bat file not found in the SMAPI directory."
+        Write-Host ".bat file not found in SMAPI directory."
     }
 } else {
     Write-Host "SMAPI directory not found in extracted files."
 }
 
 # Ask the user if they want to choose the installation directory for the mods
-$customModsPathChoice = Read-Host "Do you want to choose the installation directory for the mods? (Enter 'Y' for yes, 'N' for no)"
+$customModsPathChoice = Read-Host "Voulez vous choisir  la destination de l'instalation  pour le  mods? (Ecrivez 'Y' pour oui, 'N' pour non)"
 if ($customModsPathChoice -eq "Y") {
     # Use the native Windows explorer to choose the directory
     $modsPath = (New-Object -ComObject Shell.Application).BrowseForFolder(0, "Choose the mod installation directory", 0, $defaultModsPath).Self.Path
@@ -124,35 +123,35 @@ if ($customModsPathChoice -eq "Y") {
 
 # Check if the mods folder was created
 if (Test-Path $modsPath) {
-    Write-Host "Mods folder exists in: $modsPath."
+    Write-Host "Le dossier de Mods existe dans la direction suivante:: $modsPath."
 }
 
 # Ask the user if they want to download and install Project Fluent
-$downloadProjectFluent = Read-Host "Do you want to download and install Project Fluent? (Enter 'Y' for yes, 'N' for no)"
+$downloadProjectFluent = Read-Host "Voulez vous télécharger et installer  Project Fluent? (Ecrivez 'Y' pour oui, 'N' pour non)"
 if ($downloadProjectFluent -eq "Y") {
     DownloadAndExtractZip -sourceUrl $projectFluentUrl -destinationPath $modsPath -fileName "ProjectFluent.zip"
 }
 
 # Ask the user if they want to download and install Stardew Access
-$downloadStardewAccess = Read-Host "Do you want to download and install Stardew Access? (Enter 'Y' for yes, 'N' for no)"
+$downloadStardewAccess = Read-Host "Voulez vous télécharger et installer Stardew Access? (Ecrivez 'Y' pour oui, 'N' pour non)"
 if ($downloadStardewAccess -eq "Y") {
     DownloadAndExtractZip -sourceUrl $stardewAccessUrl -destinationPath $modsPath -fileName "StardewAccess.zip"
 }
 
 # Ask the user if they want to download and install GlueFurnitureDown
-$downloadGlueFurnitureDown = Read-Host "Do you want to download and install GlueFurnitureDown? (Enter 'Y' for yes, 'N' for no)"
+$downloadGlueFurnitureDown = Read-Host "Voulez vous télécharger et installer GlueFurnitureDown? (Ecrivez 'Y' pour oui, 'N' pour non)"
 if ($downloadGlueFurnitureDown -eq "Y") {
     DownloadAndExtractZip -sourceUrl $glueFurnitureDownUrl -destinationPath $modsPath -fileName "GlueFurnitureDown.zip"
 }
 
 # Ask the user if they want to download and install AutoFish
-$downloadAutoFish = Read-Host "Do you want to download and install AutoFish? (Enter 'Y' for yes, 'N' for no)"
+$downloadAutoFish = Read-Host "Voulez vous télécharger et installer AutoFish? (Ecrivez 'Y' pour oui, 'N' pour non)"
 if ($downloadAutoFish -eq "Y") {
     DownloadAndExtractZip -sourceUrl $autoFishUrl -destinationPath $modsPath -fileName "AutoFish.zip"
 }
 
 # Ask the user if they want to download and install Kokoro
-$downloadKokoro = Read-Host "Do you want to download and install Kokoro? (Enter 'Y' for yes, 'N' for no)"
+$downloadKokoro = Read-Host "Voulez vous télécharger et installer Kokoro? (Ecrivez 'Y' pour oui, 'N' pour non)"
 if ($downloadKokoro -eq "Y") {
     DownloadAndExtractZip -sourceUrl $kokoroUrl -destinationPath $modsPath -fileName "Kokoro.zip"
 }
@@ -166,7 +165,7 @@ function ExecuteGameWithMods {
     if (Test-Path $gameExecutablePath) {
         Start-Process $gameExecutablePath
     } else {
-        Write-Host "Game executable not found."
+        Write-Host "L'éxécutable du jeu n'as pas été trouvé."
     }
 }
 
@@ -174,25 +173,26 @@ function ExecuteGameWithMods {
 $stardewModdingAPIPath = Get-ChildItem -Path (Join-Path (Split-Path $modsPath -Parent) "StardewModdingAPI.exe") -Recurse | Where-Object { $_.Name -eq "StardewModdingAPI.exe" } | Select-Object -ExpandProperty FullName
 
 # Ask the user if they want to create a shortcut on the desktop
-$createShortcut = Read-Host "Do you want to create a shortcut on the desktop? (Enter 'Y' for yes, 'N' for no)"
+$createShortcut = Read-Host "Voulez vous créer un raccourci pour lancer le jeu sur le bureau ? (Ecrivez 'Y' pour oui, 'N' pour non)"
 if ($createShortcut -eq "Y") {
     # Create a shortcut on the desktop for Stardew Modding API
     CreateDesktopShortcut -executablePath $stardewModdingAPIPath -shortcutName "StardewModdingAPI"
 }
 
 # Ask the user if they want to enable achievements
-$enableAchievements = Read-Host "Do you want to enable achievements for Stardew Modding API? (Enter 'Y' for yes, 'N' for no)"
+$enableAchievements = Read-Host "Voulez vous activer les succès pour Stardew Modding API? (Ecrivez 'Y' pour oui, 'N' pour non)"
 if ($enableAchievements -eq "Y") {
     # Enable achievements for Stardew Modding API shortcut
     EnableAchievements -shortcutName "StardewModdingAPI"
 }
 
 # Ask the user if they want to execute the game with mods
-$executeGame = Read-Host "Do you want to execute the game with mods now? (Enter 'Y' for yes, 'N' for no)"
+$executeGame = Read-Host "Voulez vous lancer le jeu avec les Mods maintenant ? (Ecrivez 'Y' pour oui, 'N' pour non)"
 if ($executeGame -eq "Y") {
     # Execute the game with mods
     ExecuteGameWithMods -gameExecutablePath $stardewModdingAPIPath
 }
 
 # Report that the mod configuration was completed successfully
-Write-Host "Mod configuration completed successfully!"
+Write-Host "La configuration du mod est terminé avec succès!"
+
