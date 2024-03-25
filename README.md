@@ -39,15 +39,15 @@ if the terminal output is blank/empty, it is working
 # instalation metodes
 1. **Downloading the Source Code from GitHub**:
    - Download the source code from this repository [here](https://codeload.github.com/azurejoga/Stardew-Valley-access-automatic/zip/refs/heads/main).
-   - Navigate to the directory where the `stardew.ps1` file was downloaded.
-   - Run the script by clicking on the `stardew.ps1` file with the applications key on your keyboard and running with PowerShell or through PowerShell with the command `.\stardew.ps1`.
+   - Navigate to the directory where the `stardew-languages.ps1` file was downloaded.
+   - Run the script by clicking on the `stardew-languages.ps1` file with the applications key on your keyboard and running with PowerShell or through PowerShell with the command `.\stardew-languages.ps1`.
 
 2.**Running the Script without needing to download**
    - Open PowerShell.
    - Run the following command:
 
      ```powershell
-     Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted -Force; Invoke-Expression (Invoke-WebRequest -Uri "https://github.com/azurejoga/Stardew-Valley-access-automatic/raw/main/stardew.ps1" -UseBasicParsing).Content
+     Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted -Force; Invoke-Expression (Invoke-WebRequest -Uri "https://github.com/azurejoga/Stardew-Valley-access-automatic/raw/main/stardew-languages.ps1" -UseBasicParsing).Content
      ```
    This will automatically download and run the script without having to download it from github itself.
 

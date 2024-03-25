@@ -12,6 +12,10 @@ function Execute-Script {
             Write-Host "Voce escolheu Portugues."
             $scriptUrl = "https://github.com/azurejoga/Stardew-Valley-access-automatic/raw/main/stardew-pt-br.ps1"
         }
+        3 {
+            Write-Host "Vous avez choisi le français."
+            $scriptUrl = "https://github.com/azurejoga/Stardew-Valley-access-automatic/raw/main/stardew-fr.ps1"
+        }
         default {
             Write-Host "Invalid choice. Exiting." -ForegroundColor Red
             Exit
@@ -43,7 +47,8 @@ if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
 Write-Host "Select your language:"
 Write-Host "1. English"
 Write-Host "2. Portugues / Portuguese"
-$languageChoice = Read-Host "Enter your choice (1 or 2)"
+Write-Host "3. French / FR"
+$languageChoice = Read-Host "Enter your choice (1 2 or 3)"
 
 # Execute script based on language choice
 Execute-Script -LanguageChoice $languageChoice
