@@ -3,7 +3,6 @@ if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
     Write-Host "You are not running this script as administrator. Re-launching with elevated permissions..." -ForegroundColor Yellow
     Start-Sleep -Seconds 3
     Start-Process powershell.exe -Verb RunAs -ArgumentList "-File",$MyInvocation.MyCommand.Path
-    Exit
 }
 
 # Download directory
