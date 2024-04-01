@@ -1,6 +1,3 @@
-# executing powershell script policy
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted -Force
-
 # Check if running with administrative privileges
 if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
     Write-Host "You are not running this script as administrator. Re-launching with elevated permissions..." -ForegroundColor Yellow
