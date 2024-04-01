@@ -1,8 +1,22 @@
-# Check if running with administrative privileges
+# Function to start a new PowerShell process with elevated privileges
+function Start-ProcessElevated {
+    param (
+        [string]$ScriptPath
+    )
+    
+    $psi = New-Object System.Diagnostics.ProcessStartInfo
+    $psi.FileName = 'powershell.exe'
+    $psi.Arguments = "-NoProfile -ExecutionPolicy Bypass -File `"$ScriptPath`""
+    $psi.Verb = 'RunAs'
+    
+    [System.Diagnostics.Process]::Start($psi) | Out-Null
+}
+
+# Check if the script is running with administrator privileges
 if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
     Write-Host "You are not running this script as administrator. Re-launching with elevated permissions..." -ForegroundColor Yellow
     Start-Sleep -Seconds 3
-    Start-Process powershell.exe -Verb RunAs -ArgumentList "-File `"$($MyInvocation.MyCommand.Path)`""
+    Start-ProcessElevated -ScriptPath $MyInvocation.MyCommand.Path
     Exit
 }
 
