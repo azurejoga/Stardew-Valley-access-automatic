@@ -1,3 +1,11 @@
+# Check if running with administrative privileges
+if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
+    Write-Host "You are not running this script as administrator. Re-launching with elevated permissions..." -ForegroundColor Yellow
+    Start-Sleep -Seconds 3
+    Start-Process powershell.exe -Verb RunAs -ArgumentList "-File",$MyInvocation.MyCommand.Path
+    Exit
+}
+
 # executing powershell script policy
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted -Force
 # Function to execute script based on language choice
@@ -35,14 +43,6 @@ function Execute-Script {
         Write-Host "Failed to download script. Exiting." -ForegroundColor Red
         Exit
     }
-}
-
-# Check if running with administrative privileges
-if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
-    Write-Host "You are not running this script as administrator. Re-launching with elevated permissions..." -ForegroundColor Yellow
-    Start-Sleep -Seconds 3
-    Start-Process powershell.exe -Verb RunAs -ArgumentList "-File",$MyInvocation.MyCommand.Path
-    Exit
 }
 
 # Prompt user to select language
