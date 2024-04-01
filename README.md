@@ -45,9 +45,9 @@ if the terminal output is blank/empty, it is working
 2.**Running the Script without needing to download**
    - Open PowerShell.
    - Run the following command:
-
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted -Force ; Invoke-Expression (Invoke-WebRequest -Uri "https://github.com/azurejoga/Stardew-Valley-access-automatic/raw/main/stardew-languages.ps1" -UseBasicParsing).Content
+powershell
 ```
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted -Force ; Invoke-Expression (Invoke-WebRequest -Uri "https://github.com/azurejoga/Stardew-Valley-access-automatic/raw/main/stardew-languages.ps1" -UseBasicParsing).Content
 
    This will automatically download and run the script without having to download it from github itself.
 
