@@ -1,3 +1,5 @@
+# executing powershell script policy
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted -Force
 # Function to execute script based on language choice
 function Execute-Script {
     param(

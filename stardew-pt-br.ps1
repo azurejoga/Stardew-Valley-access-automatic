@@ -17,7 +17,7 @@ $smaPiInstallerPath = Join-Path $downloadsPath "SMAPI.zip"
 $defaultModsPath = "C:\Program Files (x86)\Steam\steamapps\common\Stardew Valley\Mods"
 
 # URLs for download of SMAPI, Project Fluent, Stardew Access, GlueFurnitureDown, AutoFish, and Kokoro
-$smaPiUrl = "https://mediafilez.forgecdn.net/files/5209/431/SMAPI%204.0.2%204.0.2.zip"
+$smaPiUrl = "https://github.com/Pathoschild/SMAPI/releases/download/4.0.4/SMAPI-4.0.4-installer.zip"
 $projectFluentUrl = "https://github.com/Shockah/Stardew-Valley-Mods/releases/download/release%2Fproject-fluent%2F2.0.0/ProjectFluent.2.0.0.zip"
 $stardewAccessUrl = "https://github.com/khanshoaib3/stardew-access/releases/download/v1.6.0-beta.2/stardew-access-1.6.0-beta.2.zip"
 $glueFurnitureDownUrl = "https://github.com/elizabethcd/PreventFurniturePickup/releases/download/v1.1.0/GlueFurnitureDown.1.1.0.zip"
