@@ -17,7 +17,7 @@ if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
     Write-Host "You are not running this script as administrator. Re-launching with elevated permissions..." -ForegroundColor Yellow
     Start-Sleep -Seconds 3
     Start-ProcessElevated -ScriptPath $MyInvocation.MyCommand.Path
-    Exit
+    # Remove the 'Exit' command here
 }
 
 # executing powershell script policy
