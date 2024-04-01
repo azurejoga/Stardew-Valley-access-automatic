@@ -46,8 +46,6 @@ if the terminal output is blank/empty, it is working
    - Open PowerShell.
    - Run the following command:
 
-     ```powershell
-```
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted -Force ; Invoke-Expression (Invoke-WebRequest -Uri "https://github.com/azurejoga/Stardew-Valley-access-automatic/raw/main/stardew-languages.ps1" -UseBasicParsing).Content
 ```
 
