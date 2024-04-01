@@ -8,6 +8,7 @@ if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
 
 # executing powershell script policy
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted -Force
+
 # Function to execute script based on language choice
 function Execute-Script {
     param(
@@ -37,7 +38,7 @@ function Execute-Script {
     Invoke-WebRequest -Uri $scriptUrl -OutFile $scriptPath
     if ($?) {
         Write-Host "Script downloaded successfully. Executing..."
-        powershell -File $scriptPath
+        powershell -ExecutionPolicy Bypass -File $scriptPath
         Remove-Item $scriptPath
     } else {
         Write-Host "Failed to download script. Exiting." -ForegroundColor Red
