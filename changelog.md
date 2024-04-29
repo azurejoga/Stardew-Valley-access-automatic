@@ -1,3 +1,7 @@
+# stardew automatic, v2.0 instable version.
+* updated: SMAPI, v4.0.8.
+* updated: stardew-access: beta 4, v1.6.0.4
+
 # stardew automatic, v1.0 instable version.
 Hello everybody! I'm coming here to tell you that the script has had a new update!
 1. added the kokoro mod, the missing mod for the game to work with the screen reader.
