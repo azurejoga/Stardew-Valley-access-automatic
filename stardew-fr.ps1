@@ -1,12 +1,3 @@
-# Check if you are running as administrator
-if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
-    Write-Host "Running as a non-administrator. Requesting elevation..."
-
-    # Request elevation to administrator
-    Start-Process powershell -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$($MyInvocation.MyCommand.Path)`"" -Verb RunAs
-    exit
-}
-
 # Download directory
 $downloadsPath = [System.IO.Path]::Combine($env:USERPROFILE, "Downloads")
 # SMAPI installer path
