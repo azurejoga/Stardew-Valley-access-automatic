@@ -23,6 +23,7 @@ After you install the game on Steam, run it at least once so that all changes ta
 
 ### How to use
 There are two ways to use the script
+* download and run the .exe
 * You can download the source code from github below or use a command that will do the entire process for you, more details below.
 
 #### Execution
@@ -37,7 +38,17 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted -Force;
 if the terminal output is blank/empty, it is working
 
 # instalation metodes
-1. **Downloading the Source Code from GitHub**:
+1.**Download the executable**:
+You can download the executable [here](https://github.com/azurejoga/Stardew-Valley-access-automatic/raw/main/stardew-automatic.exe)
+and check its security,
+[here](https://www.virustotal.com/gui/file/f84e3c92f0d0f6b73e9fdcaeda431c7199b569390f26898669f2471ac50071f3/summary)
+* Important:
+Run as administrator for better usability and to avoid errors.
+
+* The executable is signed with a certificate to guarantee its authenticity and reliability.
+* Furthermore, it updates automatically!
+
+2. **Downloading the Source Code from GitHub**:
    - Download the source code from this repository [here](https://codeload.github.com/azurejoga/Stardew-Valley-access-automatic/zip/refs/heads/main).
    - Navigate to the directory where the `stardew-languages.ps1` file was downloaded.
    - Run the script by clicking on the `stardew-languages.ps1` file with the applications key on your keyboard and running with PowerShell or through PowerShell with the command `.\stardew-languages.ps1`.
