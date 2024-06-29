@@ -53,7 +53,7 @@ Run as administrator for better usability and to avoid errors.
    - Navigate to the directory where the `stardew-languages.ps1` file was downloaded.
    - Run the script by clicking on the `stardew-languages.ps1` file with the applications key on your keyboard and running with PowerShell or through PowerShell with the command `.\stardew-languages.ps1`.
 
-2.**Running the Script without needing to download**
+3.**Running the Script without needing to download**
    - Open PowerShell.
    - Run the following command:
 
