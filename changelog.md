@@ -1,5 +1,8 @@
+# Stardew automatic, V4.0 instable version
+* updated: Stardew-access for version 1.6.0.5-beta.5 
+
 # Stardew automatic: V3.0 instable version.
-* updated: stardew-access to version 1.5.1
+* updated: stardew-access to version 1.6.0.4-beta.4
 * added: binary for Windows, download now!
 
 # stardew automatic, v2.0 instable version.

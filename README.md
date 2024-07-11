@@ -22,7 +22,7 @@ After you install the game on Steam, run it at least once so that all changes ta
 - **Compatibility and Customization**: The script is designed to be flexible and compatible with different system configurations. It allows users to choose the installation directory for mods and offers the possibility to customize the installation as desired.
 
 ### How to use
-There are two ways to use the script
+There are 3 ways to use the script
 * download and run the .exe
 * You can download the source code from github below or use a command that will do the entire process for you, more details below.
 
