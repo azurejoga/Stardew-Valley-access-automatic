@@ -37,7 +37,7 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted -Force;
 ```
 if the terminal output is blank/empty, it is working
 
-# instalation metodes
+# instalation methods
 1.**Download the executable**:
 You can download the executable [here](https://github.com/azurejoga/Stardew-Valley-access-automatic/raw/main/stardew-automatic.exe)
 and check its security,
